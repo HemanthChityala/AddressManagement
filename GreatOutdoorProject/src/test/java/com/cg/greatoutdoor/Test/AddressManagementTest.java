@@ -1,4 +1,4 @@
-package com.cg.greatoutdoor.ServiceTest;
+package com.cg.greatoutdoor.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +33,7 @@ import com.cg.greatoutdoor.service.AddressService;
 @RunWith(SpringRunner.class)
 @SpringBootTest()
 @Transactional
-public class AddressServiceTest {
+public class AddressManagementTest {
 
 	@Autowired
 	AddressService addressService;
@@ -43,27 +43,23 @@ public class AddressServiceTest {
 	 void setUpBeforeClass() {
 		msg = "All Test Cases started";
 		logger.info(msg);
-		//System.out.println("All Test Cases started");
 	}
 	
 	@BeforeEach
 	void setup() {
 		msg = "Test Case Started";
 		logger.info(msg);
-		//System.out.println("Test Case Started");
 	}
 
 	@AfterEach
 	void tearDown() {
 		msg = "Test Case Over";
 		logger.info(msg);
-		//System.out.println("Test Case Over");	
 	}
 	
 	@AfterAll	
 	void setUpAfterClass() {
 		logger.info(msg);
-		//System.out.println("All test cases ended.");
 	}
 	@Test
 	@DisplayName("Test for adding an address")
