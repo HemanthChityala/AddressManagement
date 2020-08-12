@@ -19,8 +19,8 @@ public class GreatOutdoorExceptionHandler {
 	}
 	
 	
-	@ExceptionHandler(value=AddressServiceException.class)
-	public ResponseEntity<Object> handleException3(AddressServiceException exception){
+	@ExceptionHandler(value=AddressException.class)
+	public ResponseEntity<Object> handleException3(AddressException exception){
 		return new ResponseEntity<>(exception.getMessage(),HttpStatus.NOT_FOUND);
 	}
 	
