@@ -59,6 +59,7 @@ public class AddressManagementTest {
 	
 	@AfterAll	
 	void setUpAfterClass() {
+		msg = "All Test Cases endedr";
 		logger.info(msg);
 	}
 	@Test

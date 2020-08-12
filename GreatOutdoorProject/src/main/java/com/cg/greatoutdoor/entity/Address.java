@@ -3,16 +3,25 @@ package com.cg.greatoutdoor.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-//import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="great_outdoor_address")
 public class Address {
+	public Address(String buildingNo, String city, String state, String field, String zip) {
+		super();
+		this.buildingNo = buildingNo;
+		this.city = city;
+		this.state = state;
+		this.field = field;
+		this.zip = zip;
+	}
+
+
 	public Address(int addressId, String buildingNo, String city, String state, String field, String zip, User user) {
 		super();
 		this.addressId = addressId;
@@ -25,8 +34,7 @@ public class Address {
 	}
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addressId_generator")
-	//@SequenceGenerator(name="addressId_generator", sequenceName = "addressId_seq", allocationSize=2000)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="address_Id",nullable=false)
 	private int addressId;
 	
