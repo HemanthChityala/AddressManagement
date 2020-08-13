@@ -31,6 +31,7 @@ public class AddressDaoImpl implements AddressDao {
 	public List<Address> retreive() {
 		Query query = entitymanager.createQuery("from Address address");
 		return query.getResultList();
+		
 	}
 
 	@Override

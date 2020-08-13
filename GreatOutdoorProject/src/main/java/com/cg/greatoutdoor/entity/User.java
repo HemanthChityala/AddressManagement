@@ -132,9 +132,6 @@ public class User {
 		logger.info(msg);
 		this.getAddress().add(address);
 		address.setUser(this);
-		msg = "address added successfully";
-		logger.info(msg);
-
 	}
 
 }

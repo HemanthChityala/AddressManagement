@@ -39,7 +39,11 @@ public class AddressServiceImpl implements AddressService {
 		List<Address> address = addressDao.retreive();
 		List<AddressDetails> adDetails = new ArrayList<AddressDetails>();
 
-		if (address != null) {
+		if (address.isEmpty()) {
+
+			throw new AddressNotFoundException("Address not available,please an address!");
+
+		} else {
 
 			for (Address ad : address) {
 				AddressDetails addressdetails = new AddressDetails(ad.getAddressId(), ad.getBuildingNo(), ad.getCity(),
@@ -50,12 +54,7 @@ public class AddressServiceImpl implements AddressService {
 
 			return adDetails;
 
-		} else {
-
-			throw new AddressNotFoundException("Address not available,please an address!");
-
 		}
-		
 
 	}
 
@@ -80,7 +79,6 @@ public class AddressServiceImpl implements AddressService {
 	public void update(Address address, int id) throws AddressNotFoundException {
 
 		Address address1 = addressDao.findById(id);
-		// if (id != 0) {
 		if (address1 != null) {
 
 			addressDao.update(address, id);
@@ -95,15 +93,15 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public AddressDetails fingById(int id) throws IdNotFoundException {
-		if (id != 0) {
+		Address address = addressDao.findById(id);
+		if (address != null) {
 
-			Address address = addressDao.findById(id);
 			AddressDetails adDetails = new AddressDetails(address.getAddressId(), address.getBuildingNo(),
 					address.getCity(), address.getState(), address.getField(), address.getZip());
 			return adDetails;
 		} else {
 
-			throw new IdNotFoundException("Id not found");
+			throw new IdNotFoundException("Id not found please enter a valid id");
 
 		}
 	}
