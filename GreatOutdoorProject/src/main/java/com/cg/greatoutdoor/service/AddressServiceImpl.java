@@ -22,7 +22,7 @@ import com.cg.greatoutdoor.exception.IdNotFoundException;
 public class AddressServiceImpl implements AddressService {
 
 	@PersistenceContext
-	private EntityManager em;
+	private EntityManager entitymanager;
 
 	@Autowired
 	AddressDaoImpl addressDao;
