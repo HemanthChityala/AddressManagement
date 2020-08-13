@@ -21,30 +21,27 @@ import com.cg.greatoutdoor.GreatOutdoorProjectApplication;
 public class User {
 
 	@Id
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private int userId;
-	
-	@Column(name="USERNAME",length=20)
+
+	@Column(name = "USERNAME", length = 20)
 	private String userName;
 
-	@Column(name="PASSWORD",length = 20)
+	@Column(name = "PASSWORD", length = 20)
 	private String password;
 
-	@Column(name="ROLE",length = 20)
+	@Column(name = "ROLE", length = 20)
 	private String role;
 
-	@Column(name="PHONENUMBER",length = 16)
+	@Column(name = "PHONENUMBER", length = 16)
 	private String phoneNumber;
 
-	@Column(name="EMAIL",length = 50)
+	@Column(name = "EMAIL", length = 50)
 	private String email;
-	
-	
 
-	public User( String userName, String password, String role,
-			String phoneNumber, String email) {
+	public User(String userName, String password, String role, String phoneNumber, String email) {
 		super();
-		
+
 		this.userName = userName;
 		this.password = password;
 		this.role = role;
@@ -60,8 +57,6 @@ public class User {
 		this.email = email;
 	}
 
-	
-	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -115,37 +110,31 @@ public class User {
 		this.email = email;
 	}
 
-	@OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
-    private List<Address> address = new ArrayList<Address>();
-	
-	
-	  public List<Address> getAddress() {
-		  Logger logger = LoggerFactory.getLogger(GreatOutdoorProjectApplication.class);
-			String msg;
-			msg = "INSIDE GET Address";
-			logger.info(msg);
-			return address;
-		    }
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Address> address = new ArrayList<Address>();
 
-		   public void setAddress(List<Address> address) {
-			this.address = address;
-		    }
-		    
-		   	   
-		    
-		    public void addAddress(Address a)
-		    { 
-		    	Logger logger = LoggerFactory.getLogger(GreatOutdoorProjectApplication.class);
-				String msg;
-				msg = "INSIDE ADD Address";
-				logger.info(msg);
-			    this.getAddress().add(a);
-			    a.setUser(this);
-			    msg = "address added successfully";
-				logger.info(msg);
-			   
-		    }
-	
-	
-	
+	public List<Address> getAddress() {
+		Logger logger = LoggerFactory.getLogger(GreatOutdoorProjectApplication.class);
+		String msg;
+		msg = "INSIDE GET Address";
+		logger.info(msg);
+		return address;
+	}
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+
+	public void addAddress(Address address) {
+		Logger logger = LoggerFactory.getLogger(GreatOutdoorProjectApplication.class);
+		String msg;
+		msg = "INSIDE ADD Address";
+		logger.info(msg);
+		this.getAddress().add(address);
+		address.setUser(this);
+		msg = "address added successfully";
+		logger.info(msg);
+
+	}
+
 }

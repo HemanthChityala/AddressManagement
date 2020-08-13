@@ -39,12 +39,13 @@ public class AddressManagementTest {
 	AddressService addressService;
 	Logger logger = LoggerFactory.getLogger(GreatOutdoorProjectApplication.class);
 	String msg;
+
 	@BeforeAll
-	 void setUpBeforeClass() {
+	void setUpBeforeClass() {
 		msg = "All Test Cases started";
 		logger.info(msg);
 	}
-	
+
 	@BeforeEach
 	void setup() {
 		msg = "Test Case Started";
@@ -56,51 +57,47 @@ public class AddressManagementTest {
 		msg = "Test Case Over";
 		logger.info(msg);
 	}
-	
-	@AfterAll	
+
+	@AfterAll
 	void setUpAfterClass() {
 		msg = "All Test Cases endedr";
 		logger.info(msg);
 	}
+
 	@Test
 	@DisplayName("Test for adding an address")
-	public void addAddressTest() throws AddressException 
-	{
-		Address address=new Address(1,"154","HNr","tg","colony","508204");
-		assertEquals(1,addressService.addAddress(address,1));
-	
-		
+	public void addAddressTest() throws AddressException {
+		Address address = new Address(1, "154", "HNr", "tg", "colony", "508204");
+		assertEquals(1, addressService.addAddress(address, 1));
+
 	}
+
 	@Test
 	@DisplayName("Test for retrieving Address")
-	public void retrieveAddressTest() throws AddressNotFoundException
-	{
-		List<AddressDetails> list=addressService.retreive();
+	public void retrieveAddressTest() throws AddressNotFoundException {
+		List<AddressDetails> list = addressService.retreive();
 		assertFalse(list.isEmpty());
 	}
-	
+
 	@Test
 	@DisplayName("Test for retrieving address by id")
-	public void retrieveAddressByIdTest() throws IdNotFoundException
-	{
-		AddressDetails ad=addressService.fingById(1);
-		assertNotNull(ad);	
-		
-	Assertions.assertThrows(IdNotFoundException.class,()->{
-		addressService.fingById(0);
+	public void retrieveAddressByIdTest() throws IdNotFoundException {
+		AddressDetails ad = addressService.fingById(1);
+		assertNotNull(ad);
+
+		Assertions.assertThrows(IdNotFoundException.class, () -> {
+			addressService.fingById(0);
 		});
 	}
-	
-		
+
 	@Test
 	@DisplayName("Test for deleting the address")
-	public void deleteAddressTest() throws AddressNotFoundException
-	{
-		
-		assertEquals(true,addressService.delete(1));
-		Assertions.assertThrows(AddressNotFoundException.class,()->{
+	public void deleteAddressTest() throws AddressNotFoundException {
+
+		assertEquals(true, addressService.delete(1));
+		Assertions.assertThrows(AddressNotFoundException.class, () -> {
 			addressService.delete(65);
-		});		
+		});
 	}
 
 }

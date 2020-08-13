@@ -21,92 +21,90 @@ import com.cg.greatoutdoor.exception.IdNotFoundException;
 @Service
 public class AddressServiceImpl implements AddressService {
 
-	
 	@PersistenceContext
-    private EntityManager em;
-	
+	private EntityManager em;
+
 	@Autowired
-	AddressDaoImpl Dao;
+	AddressDaoImpl addressDao;
 
 	@Override
 	public int addAddress(Address address, int userId) throws AddressException {
-    
-		return Dao.insertAddress(address, userId);
+
+		return addressDao.insertAddress(address, userId);
 
 	}
 
 	@Override
 	public List<AddressDetails> retreive() throws AddressNotFoundException {
-			List<Address> address = Dao.retreive();
-			List<AddressDetails> ad = new ArrayList<AddressDetails>();			
-			
-			if(address!=null)
-			{
-				for(Address ad1:address) {
-					AddressDetails ad11 = new AddressDetails(ad1.getAddressId(),ad1.getBuildingNo(),ad1.getCity(),ad1.getState(),ad1.getField(),ad1.getZip());
-				   ad.add(ad11);
-				  
-				}
-				return  ad;
+		List<Address> address = addressDao.retreive();
+		List<AddressDetails> adDetails = new ArrayList<AddressDetails>();
+
+		if (address != null) {
+
+			for (Address ad : address) {
+				AddressDetails addressdetails = new AddressDetails(ad.getAddressId(), ad.getBuildingNo(), ad.getCity(),
+						ad.getState(), ad.getField(), ad.getZip());
+				adDetails.add(addressdetails);
+
 			}
-			else
-			{
-				throw new AddressNotFoundException("Address not found");
-			}
-			
+
+			return adDetails;
+
+		} else {
+
+			throw new AddressNotFoundException("Address not available,please an address!");
+
 		}
-	
-	
-	
-	
-	
-	@Override
-	public boolean delete(int addressId) throws AddressNotFoundException {
 		
-		 
-			{
-				Address address1 =  Dao.findById(addressId);
-				if(address1!=null)
-				{
-					Dao.delete(addressId);
-					return true;
-				}
-				else
-				{
-					throw new AddressNotFoundException("Id does Not exist or Deleted!!");
-				}	
-			}
-			
-			   
-	}		
+
+	}
 
 	@Override
-	public void update(Address address, int id) throws AddressNotFoundException
-	{
-		if(id!=0)
+	public boolean delete(int addressId) throws AddressNotFoundException {
+
 		{
-			Dao.update(address, id);
+			Address address1 = addressDao.findById(addressId);
+			if (address1 != null) {
+				addressDao.delete(addressId);
+				return true;
+			} else {
+
+				throw new AddressNotFoundException("Id does Not exist or Deleted!!");
+
+			}
 		}
-		
-		else
-		{
-			throw new AddressNotFoundException("AddressId is required for update ");
-		} 
+
+	}
+
+	@Override
+	public void update(Address address, int id) throws AddressNotFoundException {
+
+		Address address1 = addressDao.findById(id);
+		// if (id != 0) {
+		if (address1 != null) {
+
+			addressDao.update(address, id);
+
+		} else {
+
+			throw new AddressNotFoundException("AddressId not found please check the id ");
+
+		}
 
 	}
 
 	@Override
 	public AddressDetails fingById(int id) throws IdNotFoundException {
-		if(id!=0) {
-			Address address = Dao.findById(id);
-            AddressDetails ad = new AddressDetails(address.getAddressId(),address.getBuildingNo(),address.getCity(),address.getState(),address.getField(),address.getZip());
-			return ad;
-		}
-		else
-		{
+		if (id != 0) {
+
+			Address address = addressDao.findById(id);
+			AddressDetails adDetails = new AddressDetails(address.getAddressId(), address.getBuildingNo(),
+					address.getCity(), address.getState(), address.getField(), address.getZip());
+			return adDetails;
+		} else {
+
 			throw new IdNotFoundException("Id not found");
+
 		}
+	}
 }
-}
-
-
