@@ -1,0 +1,42 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 style="margin-left: 450px">Address List</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>BuildingNO</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Field</th>
+            <th>Zip</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let address of addresses">
+                <td>{{address.buildingNo}}</td>
+                <td>{{address.state}}</td>
+                <td>{{address.city}}</td>
+                <td>{{address.field}}</td>
+                <td>{{address.zip}}</td>
+                <td>
+                  <button
+      class="btn btn-primary"
+      mwlConfirmationPopover
+      [popoverTitle]="popoverTitle"
+      [popoverMessage]="popoverMessage"
+      placement="left"
+      (confirm)="deleteAddress(address.addressId)"
+      (cancel)="cancelClicked = true"
+    >
+      Delete
+    </button>
+                  <button class="btn btn-success" (click)="addressDetails(address.addressId)" class="btn btn-info" style="margin-left: 10px"> Details </button>
+                </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

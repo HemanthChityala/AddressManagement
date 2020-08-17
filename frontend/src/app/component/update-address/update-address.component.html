@@ -1,0 +1,34 @@
+<h3>Update Employee</h3>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+  
+
+    <div class="form-group">
+        <label for="name">Building Number</label>
+        <input type="text" class="form-control" id="buildingNo" required [(ngModel)]="address.buildingNo" name="buildingNo">
+      </div>
+  
+      <div class="form-group">
+        <label for="name">City</label>
+        <input type="text" class="form-control" id="city" required [(ngModel)]="address.city" name="city">
+      </div>
+  
+      <div class="form-group">
+        <label for="name">State</label>
+        <input type="text" class="form-control" id="state" required [(ngModel)]="address.state" name="state">
+      </div>
+  
+      <div class="form-group">
+          <label for="name">Field</label>
+          <input type="text" class="form-control" id="field" required [(ngModel)]="address.field" name="field">
+        </div>
+  
+        <div class="form-group">
+          <label for="name">Zip</label>
+          <input type="text" class="form-control" id="zip" required [(ngModel)]="address.zip" name="zip">
+        </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+

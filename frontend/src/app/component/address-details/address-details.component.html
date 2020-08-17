@@ -1,0 +1,27 @@
+<h2 style="text-align: center;">Address Details</h2> 
+
+<hr/>
+<div *ngIf="address">
+  <div>
+    <label><b>Building No: </b></label> {{address.buildingNo}}
+  </div>
+  <div>
+    <label><b>State: </b></label> {{address.state}}
+  </div>
+  <div>
+    <label><b>City: </b></label> {{address.city}}
+  </div> 
+  <div>
+    <label><b>Field: </b></label> {{address.field}}
+  </div> 
+  <div>
+    <label><b>Zip: </b></label> {{address.zip}}
+  </div>      
+                
+</div>
+
+<br>
+<br>
+<button class="btn btn-success" (click)="updateAddress(address.addressId)" class="btn btn-info" > Update </button>
+            
+<button (click)="list()" class="btn btn-primary" style="margin-left: 10px">Back to Address List</button><br>
